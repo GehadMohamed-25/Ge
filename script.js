@@ -5,11 +5,12 @@ function calculateReadiness() {
     "التصميم": ['design1', 'design2'],
     "البناء": ['build1', 'build2'],
     "التشغيل": ['operate1', 'operate2'],
-    "التفكيك/نهاية العمر": ['end1', 'end2']
+    "التفكيك": ['end1', 'end2']
   };
 
   let totalScore = 0;
   let totalMax = 0;
+  let phaseResults = {};
   let resultText = "نتائج التقييم حسب المراحل:\n\n";
 
   for (let phase in phases) {
@@ -21,6 +22,7 @@ function calculateReadiness() {
     const percentage = (phaseScore / max) * 100;
     totalScore += phaseScore;
     totalMax += max;
+    phaseResults[phase] = percentage;
     const status = percentage >= 70 ? "✔️" : "⚠️";
     resultText += `- ${phase}: ${percentage.toFixed(1)}% ${status}\n`;
   }
@@ -42,7 +44,34 @@ function calculateReadiness() {
 
   resultText += `\nمستوى الجاهزية الكلي: ${overall.toFixed(1)}% (${level})\n\nالتوصية: ${advice}`;
 
-  const resultDiv = document.getElementById("result");
-  resultDiv.style.display = "block";
-  resultDiv.innerText = resultText;
+  document.getElementById("result").style.display = "block";
+  document.getElementById("result").innerText = resultText;
+
+  const ctx = document.getElementById('readinessChart');
+  ctx.style.display = 'block';
+
+  const data = {
+    labels: Object.keys(phaseResults),
+    datasets: [{
+      label: 'نسبة الجاهزية',
+      data: Object.values(phaseResults),
+      backgroundColor: ['#f44336', '#ff9800', '#2196f3', '#4caf50']
+    }]
+  };
+
+  if (window.readinessChart) {
+    window.readinessChart.destroy();
+  }
+
+  window.readinessChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: data,
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { position: 'bottom' },
+        tooltip: { callbacks: { label: ctx => `${ctx.label}: ${ctx.raw.toFixed(1)}%` } }
+      }
+    }
+  });
 }
