@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>تقييم الجاهزية لتبني جوازات المواد</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>تقييم الجاهزية لتبني جوازات المواد</h1>
+  <form id="readinessForm">
+    <div class="section">
+      <h2>مرحلة التصميم</h2>
+      <label>هل المؤسسة تستخدم أدوات تصميم رقمية مثل BIM؟
+        <select name="design1">
+          <option value="1">1 - ضعيف</option>
+          <option value="2">2</option>
+          <option value="3">3 - متوسط</option>
+          <option value="4">4</option>
+          <option value="5">5 - ممتاز</option>
+        </select>
+      </label>
+      <label>هل يتم دمج متطلبات الاستدامة في التصميم؟
+        <select name="design2">
+          <option value="1">1 - ضعيف</option>
+          <option value="2">2</option>
+          <option value="3">3 - متوسط</option>
+          <option value="4">4</option>
+          <option value="5">5 - ممتاز</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="section">
+      <h2>مرحلة البناء</h2>
+      <label>هل توجد أنظمة لتتبع المواد أثناء التوريد؟
+        <select name="build1">
+          <option value="1">1 - ضعيف</option>
+          <option value="2">2</option>
+          <option value="3">3 - متوسط</option>
+          <option value="4">4</option>
+          <option value="5">5 - ممتاز</option>
+        </select>
+      </label>
+      <label>هل يمكن دمج تقنيات QR أو RFID أثناء البناء؟
+        <select name="build2">
+          <option value="1">1 - ضعيف</option>
+          <option value="2">2</option>
+          <option value="3">3 - متوسط</option>
+          <option value="4">4</option>
+          <option value="5">5 - ممتاز</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="section">
+      <h2>مرحلة التشغيل</h2>
+      <label>هل يتم تسجيل بيانات أداء المبنى رقمياً؟
+        <select name="operate1">
+          <option value="1">1 - ضعيف</option>
+          <option value="2">2</option>
+          <option value="3">3 - متوسط</option>
+          <option value="4">4</option>
+          <option value="5">5 - ممتاز</option>
+        </select>
+      </label>
+      <label>هل توجد عمليات صيانة معتمدة على البيانات؟
+        <select name="operate2">
+          <option value="1">1 - ضعيف</option>
+          <option value="2">2</option>
+          <option value="3">3 - متوسط</option>
+          <option value="4">4</option>
+          <option value="5">5 - ممتاز</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="section">
+      <h2>مرحلة التفكيك/نهاية العمر</h2>
+      <label>هل توجد خطة لإعادة استخدام المواد أو تفكيكها؟
+        <select name="end1">
+          <option value="1">1 - ضعيف</option>
+          <option value="2">2</option>
+          <option value="3">3 - متوسط</option>
+          <option value="4">4</option>
+          <option value="5">5 - ممتاز</option>
+        </select>
+      </label>
+      <label>هل توجد قاعدة بيانات للمواد المستخدمة لتسهيل إعادة التدوير؟
+        <select name="end2">
+          <option value="1">1 - ضعيف</option>
+          <option value="2">2</option>
+          <option value="3">3 - متوسط</option>
+          <option value="4">4</option>
+          <option value="5">5 - ممتاز</option>
+        </select>
+      </label>
+    </div>
+
+    <button type="button" onclick="calculateReadiness()">احسب النتيجة</button>
+  </form>
+
+  <div id="result" class="result" style="display:none;"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
